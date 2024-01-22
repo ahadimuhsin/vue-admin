@@ -19,8 +19,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import axios from 'axios'
+
 export default {
   name: "Login",
   data(){
@@ -31,12 +32,13 @@ export default {
   },
   methods: {
     async login(){
-        await axios.post('http://localhost:8888/api/admin/login', {
+
+        await axios.post('login', {
             email: this.email,
             password: this.password
         });
 
-        await this.$router.push('')
+        await this.$router.push('/')
     }
   }
 };

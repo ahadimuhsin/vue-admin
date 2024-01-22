@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    path: '', component: LayoutVue
+    path: '/', component: LayoutVue
   },
   {
     path: '/login', component: LoginVue, name: 'Login'

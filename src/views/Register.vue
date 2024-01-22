@@ -34,7 +34,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<script>
 import axios from 'axios'
 export default {
     name: "Register",
@@ -44,12 +44,12 @@ export default {
             last_name: "",
             email: "",
             password: "",
-            password_confirm: "",
+            password_confirm: "",   
         }
     },
     methods: {
         async register(){
-            await axios.post('http://localhost:8888/api/admin/register', {
+            await axios.post('register', {
                 first_name: this.first_name,
                 last_name: this.last_name,
                 email: this.email,
