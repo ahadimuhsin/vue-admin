@@ -4,30 +4,25 @@
 
     <nav class="my-2 my-md-0 mr-md-3">
       <router-link to="/profile" class="p-2 text-white text-decoration-none">
-        Nama Admin Nanti
+        {{ user.first_name }} {{ user.last_name }}
       </router-link>
-      <ul class="navbar-nav flex-row d-md-none">
-        <li class="nav-item text-nowrap">
-          <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
-            <svg class="bi"><use xlink:href="#search"/></svg>
-          </button>
-        </li>
-        <li class="nav-item text-nowrap">
-          <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <svg class="bi"><use xlink:href="#list"/></svg>
-          </button>
-        </li>
-      </ul>
-      <div id="navbarSearch" class="navbar-search w-100 collapse">
-        <input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
-      </div>
       <a href="#" class="p-2 text-white text-decoration-none" @click="logout">Sign out</a>
     </nav>
   </header>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    name: "Nav"
+    name: "Nav",
+    props: ['user'],
+    methods: {
+      async logout()
+      {
+        await axios.post('/logout')
+
+        await this.$router.push("/login")
+      }
+    }
 }
 </script>
