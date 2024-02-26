@@ -3,6 +3,7 @@ import LinksVue from '@/views/Links.vue'
 import LoginVue from '@/views/Login.vue'
 import RegisterVue from '@/views/Register.vue'
 import Users from '@/views/Users.vue'
+import ProductsVue from '@/views/products/Products.vue'
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 
@@ -17,6 +18,7 @@ const routes: Array<RouteConfig> = [
       {path: '', redirect: '/users'},
       {path: '/users', component: Users},
       {path: '/users/:id/links', component: LinksVue},
+      {path: '/products', component: ProductsVue},
     ]
   },
   {
