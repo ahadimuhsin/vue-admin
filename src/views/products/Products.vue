@@ -1,7 +1,11 @@
 
 <template>
     <div>
-        <!-- <FlashMessage></FlashMessage> -->
+        <div class="pt-3 pb-2 border-bottom">
+            <v-btn href="/products/create" variant="contained" color="primary">
+            Add
+            </v-btn>
+        </div>
       <v-simple-table>
       <template>
         <thead>
@@ -26,7 +30,10 @@
               <td>{{ product.description }}</td>
               <td>{{ product.price }}</td>
               <td>
-                  <v-btn color="error" @click="deleteProduct(product.id)">Delete</v-btn>
+                <v-btn-toggle>
+                    <v-btn color="info" :href="`/products/${product.id}/edit`">Edit</v-btn>
+                    <v-btn color="error" @click="deleteProduct(product.id)">Delete</v-btn>
+                </v-btn-toggle>
               </td>
           </tr>
         </tbody>
@@ -67,7 +74,14 @@ export default Vue.extend ({
         {
             if(confirm('Are you sure?'))
             {
-                // await axios.delete(`products/${id}`)
+                await axios.delete(`products/${id}`)
+
+                this.$notify({
+                    group: 'foo',
+                    type: 'success',
+                    title: 'Sukses',
+                    text: 'Hapus Data Produk Berhasil'
+                });
                 //delete the data from array without reload
                 this.products = this.products.filter((prod) => {
                     return prod.id !== id
