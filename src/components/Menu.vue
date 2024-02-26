@@ -9,6 +9,12 @@
           <router-link to="/products" class="nav-link" active-class="active">
             Products
           </router-link>
+          <router-link to="/orders" class="nav-link" active-class="active">
+            Orders
+          </router-link>
+          <!-- <router-link to="/profile" class="nav-link" active-class="active">
+            Profile
+          </router-link> -->
         </li>
         <!-- <li class="nav-item">
           <router-link to="#" class="nav-link" active-class="active">

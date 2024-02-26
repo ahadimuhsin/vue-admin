@@ -7,7 +7,7 @@
             </v-btn>
         </div>
       <v-simple-table>
-      <template>
+      <template v-slot:default>
         <thead>
           <tr>
             <th class="text-left">#</th>

@@ -1,6 +1,8 @@
 import LayoutVue from '@/views/Layout.vue'
 import LinksVue from '@/views/Links.vue'
 import LoginVue from '@/views/Login.vue'
+import OrdersVue from '@/views/Orders.vue'
+import ProfileVue from '@/views/Profile.vue'
 import RegisterVue from '@/views/Register.vue'
 import Users from '@/views/Users.vue'
 import ProductFormVue from '@/views/products/ProductForm.vue'
@@ -22,6 +24,8 @@ const routes: Array<RouteConfig> = [
       {path: '/products', component: ProductsVue},
       {path: '/products/create', component: ProductFormVue},
       {path: '/products/:id/edit', component: ProductFormVue},
+      {path: '/orders', component: OrdersVue},
+      {path: '/profile', component: ProfileVue},
     ]
   },
   {
