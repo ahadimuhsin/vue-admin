@@ -4,7 +4,7 @@
         <form @submit.prevent="changeProfile">
             <div class="my-4">
                 <v-text-field label="First Name" 
-                placeholder="First Name" v-model="first_name"></v-text-field>
+                placeholder="First Name" v-model="user.first_name"></v-text-field>
             </div>
 
             <div class="my-4">
@@ -13,14 +13,14 @@
 
                 <v-text-field label="Last Name" 
                 placeholder="Last Name"
-                v-model="last_name"></v-text-field>
+                v-model="user.last_name"></v-text-field>
 
             </div>
 
             <div class="my-4">
                 <v-text-field label="Email" 
                 placeholder="Email"
-                v-model="email"
+                v-model="user.email"
                 type="email"></v-text-field>
             </div>
 
@@ -31,19 +31,19 @@
         <form @submit.prevent="changePassword">
             <div class="my-4">
                 <v-text-field label="Current Password" 
-                placeholder="Current Password" v-model="current_password"></v-text-field>
+                placeholder="Current Password" v-model="current_password" type="password"></v-text-field>
             </div>
 
             <div class="my-4">
                 <v-text-field label="Password" 
                 placeholder="Password"
-                v-model="password"></v-text-field>
+                v-model="password" type="password"></v-text-field>
             </div>
 
             <div class="my-4">
                 <v-text-field label="Password Confirmation" 
                 placeholder="Password Confirmation"
-                v-model="password_confirm"></v-text-field>
+                v-model="password_confirm" type="password"></v-text-field>
             </div>
 
             <v-btn color="primary" type="submit">Save</v-btn>
@@ -58,32 +58,22 @@ export default {
   name: "Profile",
   data(){
     return{
-        // user: {},
-        first_name: '',
-        last_name: '',
-        email: '',
         current_password: '',
         password : '',
         password_confirm : ''
     }
   },
-  async mounted()
-  {
-    const {data} = await axios.get('user');
-
-    this.first_name = data.first_name
-    this.last_name= data.last_name
-    this.email = data.email
-  },
   methods: {
     async changeProfile()
     {
         const data = {
-            first_name: this.first_name,
-            last_name: this.last_name,
-            email: this.email,
+            first_name: this.user.first_name,
+            last_name: this.user.last_name,
+            email: this.user.email,
         }
-        await axios.put('users/info', data);
+        const {process} = await axios.put('users/info', data);
+
+        await this.$store.dispatch('setUser', process);
 
         this.$notify({
             group: 'foo',
@@ -106,8 +96,22 @@ export default {
             password_confirm: this.password_confirm
         });
 
-        console.log(response)
+        this.$notify({
+            group: 'foo',
+            type: 'success',
+            title: 'Sukses',
+            text: 'Password Berhasil Diubah'
+        });
+        
+        setTimeout(() => {
+            location.reload();
+        }, 2000);
     }
-  }
+  },
+  computed: {
+      user(){
+        return this.$store.state.user;
+      }
+    }
 };
 </script>
